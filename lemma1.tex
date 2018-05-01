@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{amsthm, amsmath}
+% plain style is used for theorem, lemma, corollary...
+% default style is plain, which produces italic body text
+%\newtheorem{henv namei}{htexti}[hparent counteri]
+%\newtheorem{henv namei}[hshared counteri]{htexti}
+
+\newtheorem{lemma}{Lemma}
+
+% change the theoremstyle to definition
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\begin{document}
+\begin{definition}[k-point space]
+Let $E_N$ be an Euclidean space with dimension $N$. The k-tuple $x=(x_1, x_2, \dots, x_k)$ where $x_i \in E_N$ with metric defined by $\rho(x,y) = \sum_{i=1}^k \abs{x_i-y_i}$ forms a complete metric space called k-point space.
+\end{definition}
+\begin{definition}[minimum distance partition]\label{def:mdp}
+The minumum distance partition of $E_N$ is the disjoint set collection $S(x) = \{S_1(x),S_2(x),\dots, S_k(x)\}$ where $S_i(x) $ is defined by
+\begin{subequations}
+\begin{align}
+S_1(x)  & = T_1(x)  \\
+S_j(x) & = T_j(x)\backslash \bigcup_{i=1}^{j-1} S_i(x) \\
+T_i(x) & = \{ \xi: \xi \in E_N | \abs{\xi-x_i} \leq \abs{\xi-x_j}, j=1,2,\dots,k\}
+\end{align}
+\end{subequations}
+\end{definition}`
+\begin{definition}[conditional mean]
+Given a k-point $x$ and a continuous probability measure $p$ on $E_N$.  the i-th conditional mean of $x$ with respect to $p$ is
+\begin{equation}
+u_i(x)=\begin{cases}
+\frac{1}{p(S_i(x))} \int_{S_i(x)} z dp(z)  & p(S_i(x))>0 \\
+x_i & p(S_i(x))=0 \\
+\end{cases}
+\end{equation}
+\end{definition}
+\begin{lemma}\label{lem:ip}
+If $p(S_i(x))>0$, then $u_i(x)$ is an interior point of $S_i(x)$.
+\begin{proof}[Proof sketch]
+From Definition \ref{def:mdp}, 
+$$
+S_i(x) =\left\{ \xi: \xi \in E_N \bigg| \,\begin{aligned} \abs{\xi-x_i} < \abs{\xi-x_j}, &  j=1,2,\dots, i-1\\
+ \abs{\xi-x_i} \leq \abs{\xi - x_j}, & j=i,  i+1 \dots k \end{aligned}
+\right\}
+$$
+which is the intersection of $k$ convex sets. $u_i(x)$ can be seen as weighted mean of points in $S_i(x)$, thus falling within $S_i(x)$. Since $p(S_i(x))>0$, there exists interior point in $S_i(x)$. From convex analysis we know that the contribution of interior point to the convex combination makes the combination iteself an interior point.
+\end{proof}
+\end{lemma}
+\begin{lemma}
+Let $x=(x_1,x_2,\dots,x_k) $ be the limit of a convergent sequence of k-points $\{y^n\} =\{ (y_1^n, y_2^n,\dots, y_k^n) \}$ satisfying $y_i^n \in R, y_i^n \neq y_j^n $ if $ i \neq  j, n = 1, 2, \dots $. If $x_i = x_j $ for some $ i \neq j $, then 
+\begin{equation}\label{eq:lemmastar1}
+\varliminf_{n\to \infty} \sum_{i=1}^k p(S_i(y^n)) \abs{y_i^n - u_i(y^n)} >0
+\end{equation}
+\end{lemma}
+% the original paper only gives informal proof sketch
+\begin{proof}
+Assume by contradiction that the limit inferior is equal to zero.  Then we can find a subsequence of $\{ y^n \}$ such that \eqref{eq:lemmastar1} converges to zero. Without loss of generality, we assume the subsequence is $y^n$ itself. 
+\begin{equation}\label{eq:star1contradiction}
+\lim_{n\to \infty} \sum_{i=1}^k p(S_i(y^n)) \abs{y_i^n - u_i(y^n)} =0
+\end{equation}
+Also we assume $i < j$
+We know that $y^i,y_j$ (as subcomponent) converges to the same point $x_i = x_j$,
+since $y_i^n \in S_i(y^n), y_j^n \in S_j(y^n)$ and $S_i(y^n), S_j(y^n)$ are two disjoint open sets,
+$y^n_i, y^n_j$ approach each other on the common boundary of $S_i(y^n), S_j(y^n)$.
+From Lemma \ref{lem:ip} we know that $u_i(y^n) \in S_i^{\circ}(y^n),u_j(y^n) \in S_j^{\circ}(y^n)$
+
+For simplicity, we assume $x_m \neq x_i = x_j \forall m\neq i,j$ and $i<j$, then $p(S_i(x))>0, p(S_j(x))=0$ from Definition \ref{def:mdp}.
+% for general case the proof is similar.
+From continuity we know that $p(S_i(y^n))+p(S_j(y^n)) \to p(S_i(x)) \textrm{ as } n\to \infty$. Then either $p(S_i(y^n))$ or $p(S_j(y^n))$ is larger than a positive number $\delta$ for sufficiently large $n$.  Denote it as $p(S_m(y^n))$. Then from equation \eqref{eq:star1contradiction} $y_m^n $ is arbitrary near to $u_m(y^n)$ as $ n \to \infty$. That is $u_m(y^n)$ is arbitrary near to the boundary of $S_m(y^n)$ with $p(S_m(y^n))>\delta $.
+
+\end{proof}
+
+\end{document}

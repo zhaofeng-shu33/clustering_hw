@@ -1,0 +1,31 @@
+Topic: Clustering Techniques and Applications
+
+ 
+
+Techniques
+
+K-Means
+
+Another clustering method for comparison
+
+ 
+
+Task 1: 2D Artificial Datasets
+
+To demonstrate the influence of data patterns
+
+To demonstrate the influence of algorithm factors
+
+ 
+
+Task 2: Image Segmentation
+
+Gray vs. Colour
+
+ 
+
+Deliverables:
+
+Reports  (experiment specification, algorithm parameters, in-depth analysis)
+
+Code (any programming language, with detailed comments)
