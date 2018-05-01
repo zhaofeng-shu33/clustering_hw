@@ -15,7 +15,7 @@ from sihouette_plot import plot_clusters_silhouette
 from sklearn.metrics import silhouette_samples
 from sklearn.cluster import AffinityPropagation
 import PIL.Image as Image
-import pdb
+
 class data_descriptor(object):
     def __init__(self,data):
         self.data = data
@@ -44,7 +44,7 @@ class image_segementation_data_wrapper(data_descriptor):
         self.image_height = self.data.shape[0]        
         self.image_width = self.data.shape[1]
         self.data =  self.data.reshape(self.data.shape[0]*self.data.shape[1],3) # flatten the data
-        #pdb.set_trace()
+        
 
     def plot(self,num_of_clusters, labels,saved_file_name):
         data_tmp = self.data.copy()
@@ -225,7 +225,7 @@ if __name__ == '__main__':
         num_of_samples = 300
     if(args.num_of_clusters):
         heuristic_num_clusters = args.num_of_clusters
-        #pdb.set_trace()        
+                
     if(args.image_file_name):
         dg_instance = image_segementation_data_wrapper(args.image_file_name)
     else:
@@ -256,7 +256,7 @@ if __name__ == '__main__':
             clustering_instance = kmeans(dg_instance.data, num_clusters=heuristic_num_clusters)    
             iteration_cnt = clustering_instance.fit()
             min_mismatch_percent, inertia_relative_difference= clustering_instance.compare()
-            #pdb.set_trace()
+            
             sum_min_mismatch_percent    += min_mismatch_percent
             sum_inertia_relative_difference += inertia_relative_difference
             sum_iteration_cnt += iteration_cnt
