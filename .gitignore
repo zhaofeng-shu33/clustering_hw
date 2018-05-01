@@ -4,4 +4,6 @@ report.out
 report.synctex.gz
 Clustering(BoYuan).pdf
 lemma1.pdf
+lemma1.tex
+lemma1.synctex.gz
 __pycache__/*
