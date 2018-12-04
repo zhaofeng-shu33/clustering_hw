@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 # author: zhaofeng-shu33
 # license: Apache License V2.0
-# file-description: generate Gaussian mixture dataset and use kmeans and __ to cluster
+# file-description: generate Gaussian mixture dataset and use kmeans and Affinity propagation to cluster
 
 
 import numpy as np
